@@ -1,0 +1,136 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.34.4.
+--
+-- see: https://github.com/sol/hpack
+
+name:           eveff
+version:        1.0.0.1
+synopsis:       Efficient effect handlers based on evidence translation.
+description:    See the "Control.Ev.Eff" module or README.md for further information
+category:       Control, Effect
+homepage:       https://github.com/xnning/eveff#readme
+bug-reports:    https://github.com/xnning/eveff/issues
+author:         Daan Leijen, Ningning Xie
+maintainer:     xnning@hku.hk;daan@microsoft.com
+copyright:      (c) 2020, Microsoft Research, Daan Leijen, Ningning Xie
+license:        MIT
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+    ChangeLog.md
+
+source-repository head
+  type: git
+  location: https://github.com/xnning/eveff
+
+library
+  exposed-modules:
+      Control.Ev.Ctl
+      Control.Ev.Eff
+      Control.Ev.Monad
+      Control.Ev.Util
+      Examples
+  other-modules:
+      Paths_eveff
+  hs-source-dirs:
+      src
+  ghc-options: -O2 -fspec-constr-keen
+  build-depends:
+      base >=4.7 && <5
+    , ghc-prim
+    , primitive
+  default-language: Haskell2010
+
+benchmark TestError
+  type: exitcode-stdio-1.0
+  main-is: TestError.hs
+  other-modules:
+      TestLayer
+      TestPyth
+      TestState
+      Paths_eveff
+  hs-source-dirs:
+      benchmark
+  ghc-options: -main-is TestError -O2 -Wno-simplifiable-class-constraints
+  build-depends:
+      base >=4.7 && <5
+    , containers
+    , criterion
+    , eveff
+    , extensible-effects
+    , fused-effects
+    , ghc-prim
+    , mtl
+    , primitive
+  default-language: Haskell2010
+
+benchmark TestLayer
+  type: exitcode-stdio-1.0
+  main-is: TestLayer.hs
+  other-modules:
+      TestError
+      TestPyth
+      TestState
+      Paths_eveff
+  hs-source-dirs:
+      benchmark
+  ghc-options: -main-is TestLayer -O2 -Wno-simplifiable-class-constraints
+  build-depends:
+      base >=4.7 && <5
+    , containers
+    , criterion
+    , eveff
+    , extensible-effects
+    , fused-effects
+    , ghc-prim
+    , mtl
+    , primitive
+  default-language: Haskell2010
+
+benchmark TestPyth
+  type: exitcode-stdio-1.0
+  main-is: TestPyth.hs
+  other-modules:
+      TestError
+      TestLayer
+      TestState
+      Paths_eveff
+  hs-source-dirs:
+      benchmark
+  ghc-options: -main-is TestPyth -O2 -Wno-simplifiable-class-constraints
+  build-depends:
+      base >=4.7 && <5
+    , containers
+    , criterion
+    , eveff
+    , extensible-effects
+    , fused-effects
+    , ghc-prim
+    , mtl
+    , primitive
+  default-language: Haskell2010
+
+benchmark TestState
+  type: exitcode-stdio-1.0
+  main-is: TestState.hs
+  other-modules:
+      TestError
+      TestLayer
+      TestPyth
+      Paths_eveff
+  hs-source-dirs:
+      benchmark
+  ghc-options: -main-is TestState -O2 -Wno-simplifiable-class-constraints
+  build-depends:
+      base >=4.7 && <5
+    , containers
+    , criterion
+    , eveff
+    , extensible-effects
+    , fused-effects
+    , ghc-prim
+    , mtl
+    , primitive
+  default-language: Haskell2010
